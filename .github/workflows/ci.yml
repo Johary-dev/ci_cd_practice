@@ -25,7 +25,7 @@ jobs:
       - name: Test backend
         run: |
           cd backend
-          echo "Backend tests passed, simple log"
+          npm test
 
       - name: Install frontend dependencies
         run: |
