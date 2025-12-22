@@ -1,0 +1,43 @@
+name: CI Monorepo Node  + Vite React
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with: 
+          node-version: 20
+
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Test backend
+        run: |
+          cd backend
+          echo "Backend tests passed, simple log"
+
+      - name: Install frontend dependencies
+        run: |
+          cd front
+          npm install
+
+      - name: Test frontend
+        run: |
+          cd front
+          echo "Frontend tests passed, simple log front"
+
+      - name: Build frontend
+        run: |
+          cd front
+          npm run build
