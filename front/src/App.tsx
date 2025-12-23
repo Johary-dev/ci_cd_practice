@@ -5,7 +5,9 @@ interface Task {
   name: string;
 }
 
-const API_URL = 'http://localhost:3001';
+//const API_URL = 'http://localhost:3001';
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
