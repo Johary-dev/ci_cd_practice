@@ -20,12 +20,14 @@ app.use((req, res, next) => {
 let tasks = [];
 
 app.get('/tasks', (req, res) => {
-  console.log('GET /tasks',JSON.stringify(tasks,null,2));
+  console.log('GET finding /tasks',JSON.stringify(tasks,null,2));
   res.json(tasks);
 });
 
 app.post('/tasks', (req, res) => {
   const { name } = req.body;
+
+  console.log('POST adding /tasks',JSON.stringify(name,null,2));
   
   if (!name || typeof name !== 'string') {
     return res.status(400).json({ error: 'Le champ "name" est requis et doit être une chaîne de caractères' });
@@ -43,6 +45,8 @@ app.post('/tasks', (req, res) => {
 app.put('/tasks/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const { name } = req.body;
+
+  console.log('PUT updating /tasks',JSON.stringify(name,null,2));
   
   if (!name || typeof name !== 'string') {
     return res.status(400).json({ error: 'Le champ "name" est requis et doit être une chaîne de caractères' });
@@ -62,6 +66,8 @@ app.delete('/tasks/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const initialLength = tasks.length;
   tasks = tasks.filter(t => t.id !== id);
+  
+  console.log('DELETE deleting /tasks',JSON.stringify(id,null,2));
   
   if (tasks.length === initialLength) {
     return res.status(404).json({ error: 'Tâche non trouvée' });
