@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 interface Task {
   id: number;
@@ -8,10 +8,9 @@ interface Task {
 //const API_URL = 'http://localhost:3001';
 const API_URL = import.meta.env.VITE_API_URL;
 
-
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [taskName, setTaskName] = useState('');
+  const [taskName, setTaskName] = useState("");
   const [loading, setLoading] = useState(false);
 
   // Charger les tâches au démarrage
@@ -25,13 +24,13 @@ function App() {
       const data = await response.json();
       setTasks(data);
     } catch (error) {
-      console.error('Erreur lors du chargement des tâches:', error);
+      console.error("Erreur lors du chargement des tâches:", error);
     }
   };
 
   const addTask = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!taskName.trim()) {
       return;
     }
@@ -39,9 +38,9 @@ function App() {
     setLoading(true);
     try {
       const response = await fetch(`${API_URL}/tasks`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ name: taskName.trim() }),
       });
@@ -49,10 +48,10 @@ function App() {
       if (response.ok) {
         const newTask = await response.json();
         setTasks([...tasks, newTask]);
-        setTaskName('');
+        setTaskName("");
       }
     } catch (error) {
-      console.error('Erreur lors de l\'ajout de la tâche:', error);
+      console.error("Erreur lors de l'ajout de la tâche:", error);
     } finally {
       setLoading(false);
     }
@@ -62,7 +61,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
-          Gestionnaire de Tâches test CI/CD
+          Gestionnaire de Tâches pour CI/CD
         </h1>
 
         {/* Formulaire d'ajout */}
@@ -81,7 +80,7 @@ function App() {
               disabled={loading || !taskName.trim()}
               className="px-6 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors shadow-md hover:shadow-lg"
             >
-              {loading ? 'Ajout...' : 'Ajouter'}
+              {loading ? "Ajout..." : "Ajouter"}
             </button>
           </div>
         </form>
@@ -90,8 +89,12 @@ function App() {
         <div className="space-y-3">
           {tasks.length === 0 ? (
             <div className="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200">
-              <p className="text-gray-500 text-lg">Aucune tâche pour le moment</p>
-              <p className="text-gray-400 text-sm mt-2">Ajoutez votre première tâche ci-dessus</p>
+              <p className="text-gray-500 text-lg">
+                Aucune tâche pour le moment
+              </p>
+              <p className="text-gray-400 text-sm mt-2">
+                Ajoutez votre première tâche ci-dessus
+              </p>
             </div>
           ) : (
             tasks.map((task) => (
@@ -116,7 +119,7 @@ function App() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
