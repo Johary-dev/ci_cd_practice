@@ -71,7 +71,7 @@ app.delete("/tasks/:id", (req, res) => {
   const initialLength = tasks.length;
   tasks = tasks.filter((t) => t.id !== id);
 
-  console.log("DELETE deleting /tasks", JSON.stringify(id, null, 2));
+  console.log("DELETE console deleting /tasks", JSON.stringify(id, null, 2));
 
   if (tasks.length === initialLength) {
     return res.status(404).json({ error: "Tâche non trouvée" });
