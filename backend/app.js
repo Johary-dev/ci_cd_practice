@@ -17,10 +17,7 @@ app.use((req, res, next) => {
 
 // Stockage des tâches en mémoire
 // Format: { id: number, name: string }
-let tasks = [
-  { id: 1, name: "Tâche exemple" },
-  { id: 2, name: "Tâche exemple 2" },
-];
+let tasks = [{ id: 1, name: "Tâche exemple" }];
 
 app.get("/tasks", (req, res) => {
   console.log("GET finding /tasks", JSON.stringify(tasks, null, 2));
