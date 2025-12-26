@@ -17,7 +17,10 @@ app.use((req, res, next) => {
 
 // Stockage des tâches en mémoire
 // Format: { id: number, name: string }
-let tasks = [{ id: 1, name: "Tâche exemple" }];
+let tasks = [
+  { id: 1, name: "Tâche exemple" },
+  { id: 2, name: "Tâche exemple 2" },
+];
 
 app.get("/tasks", (req, res) => {
   console.log("GET finding /tasks", JSON.stringify(tasks, null, 2));
@@ -30,12 +33,9 @@ app.post("/tasks", (req, res) => {
   console.log("POST adding /tasks", JSON.stringify(name, null, 2));
 
   if (!name || typeof name !== "string") {
-    return res
-      .status(400)
-      .json({
-        error:
-          'Le champ "name" est requis et doit être une chaîne de caractères',
-      });
+    return res.status(400).json({
+      error: 'Le champ "name" est requis et doit être une chaîne de caractères',
+    });
   }
 
   const task = {
@@ -54,12 +54,9 @@ app.put("/tasks/:id", (req, res) => {
   console.log("PUT updating /tasks", JSON.stringify(name, null, 2));
 
   if (!name || typeof name !== "string") {
-    return res
-      .status(400)
-      .json({
-        error:
-          'Le champ "name" est requis et doit être une chaîne de caractères',
-      });
+    return res.status(400).json({
+      error: 'Le champ "name" est requis et doit être une chaîne de caractères',
+    });
   }
 
   const taskIndex = tasks.findIndex((t) => t.id === id);
