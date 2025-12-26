@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 let tasks = [{ id: 1, name: "Tâche exemple" }];
 
 app.get("/tasks", (req, res) => {
-  console.log("GET finding list /tasks", JSON.stringify(tasks, null, 2));
+  console.log("GET /tasks", JSON.stringify(tasks, null, 2));
   res.json(tasks);
 });
 
